@@ -1,0 +1,67 @@
+.sidebar {
+    width: 178px;
+    height: 100vh;
+    background-color: #38393d;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logo-container {
+    height: 48px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .img-toggle{
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .img-amis{
+    width: 96px;
+    height: 32px;
+  }
+  
+  .menu-item{
+    flex: 1;
+    padding-top: 14px;
+    line-height: 42px;
+  }
+  
+  .item{
+    width: 178px;
+    height: 42px;
+    border-left: 6px solid transparent; 
+    color: white;
+    display: flex;
+    padding-left: 8px;
+  }
+  
+  .item:hover{
+    cursor: pointer;
+    background-color: rgb(136, 125, 125);
+  }
+  
+  .item-icon{
+    width: 24px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+  
+  .item-title{
+    display: inline-flex;
+    height: 100%;
+    align-items: center;
+    font-weight: 400;
+  }
+  
+  .item-icon img {
+    width: 24px;
+    height: 24px;
+  }

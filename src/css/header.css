@@ -1,0 +1,75 @@
+.header {
+    height: 48px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .three-stripes {
+    height: 24px;
+    width: 24px;
+    background: url("../assets/three-stripes.svg");
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .tooltip-content {
+    display: inline;
+  }
+  
+  .img-expand_more {
+    width: 14px;
+    height: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .header .space {
+    width: 400px;
+  }
+  
+  .div-search {
+    display: flex;
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .div-search input {
+    width: 200px;
+    height: 32px;
+    border: 1px solid black;
+    padding: 6px 10px;
+  }
+  
+  .div-search img {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+  }
+  
+  .header-menu-icon {
+    width: 48px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header-menu-icon:hover {
+      background-color: rgb(65, 212, 65);
+      cursor: pointer;
+  }
+  
+  .header-menu-icon img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .div-username{
+      width: 200px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }

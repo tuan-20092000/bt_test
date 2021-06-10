@@ -1,32 +1,44 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="wrapper">
+      <SideBar/>
+        <div class="content">
+          <WorkingMode 
+            v-if="showModeWorking"
+            v-on:showHideFormMode="showHideFormMode"
+          />
+          <Header v-on:showHideFormMode="showHideFormMode"/>
+          <Main/>
+        </div>
     </div>
-    <router-view />
+    <EmployeeDetail />
+    <Loading />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import SideBar from './components/SideBar.vue';
+import Header from './components/Header.vue';
+import Main from './components/Main.vue';
+import WorkingMode from './components/working_mode.vue';
+import EmployeeDetail from './components/EmployeeDetail.vue';
+import Loading from './components/Loading.vue';
+export default {
+  data(){
+    return {
+      showModeWorking : false,
+    }
+  },
+  components: {
+    SideBar, Header, Main, WorkingMode, EmployeeDetail, Loading
+  },
 
-#nav {
-  padding: 30px;
+  methods: {
+    showHideFormMode(){
+      this.showModeWorking = !this.showModeWorking;
+    },
+  }
 }
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style src="./css/app.css"></style>

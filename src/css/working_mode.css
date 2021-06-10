@@ -1,0 +1,76 @@
+.working_mode {
+    width: 400px;
+    height: 168px;
+    border: 1px solid black;
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    z-index: 1;
+  }
+  
+.content_mode {
+  width: 360px;
+  height: 148px;
+}
+
+.content_mode .title {
+  margin-top: 16px;
+  padding-bottom: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.content_mode .input-radio {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.content_mode input {
+  width: 18px;
+  height: 18px;
+}
+
+.content_mode label {
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.content_mode .line{
+    width: 100%;
+    border-top: 1px solid #d4d7dc;
+}
+
+.content_mode .div-btn{
+    margin-top: 20px;
+}
+
+.content_mode button{
+    width: 67px;
+    height: 36px;
+    border-radius: 5px;
+}
+
+.content_mode .btn-cancel{
+    border: 1px solid #b8bcc3;
+}
+
+.content_mode .btn-cancel:hover{
+    cursor: pointer;
+    background-color: rgb(158, 148, 148);
+}
+
+.content_mode .btn-ok{
+    float: right;
+    background-color: #2ca01c;
+    width: 87px;
+    border: 0px;
+}
+
+.content_mode .btn-ok:hover{
+    cursor: pointer;
+    background-color: #46c735;
+}

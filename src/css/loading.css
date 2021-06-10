@@ -1,0 +1,84 @@
+.wrap-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #cecececf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+.wrap-loading .loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #2ca01c; 
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.wrap-loading .warning {
+  background-color: white;
+  width: 400px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.warning .warning-icon{
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #88ec7a;
+}
+
+.warning .warning-content *{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.wrap-loading .warning .space{
+  height: 20px;
+  border-bottom: 1px solid #8d9096;
+}
+
+.warning .warning-control{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.warning .warning-control .btn-cancel{
+  border: 1px solid #8d9096;
+  height: 35px;
+  width: 80px;
+}
+
+.warning .warning-control .btn-cancel:hover{
+  background-color: #b8bcc3;
+}
+
+.warning .warning-control .btn-ok{
+  border: 1px solid #8d9096;
+  height: 35px;
+  width: 80px;
+  background-color: #2ca01c;
+  float: right;
+}
+
+.warning .warning-control .btn-ok:hover{
+  background-color: #35bf22;
+}
