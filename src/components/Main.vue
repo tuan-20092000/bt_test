@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main" @keyup.up.exact="arrowUp()" @keyup.down.exact="arrowDown()">
     <div class="main-title">
       <div class="main-title-content">
         <div class="title">Nhân viên</div>
@@ -55,6 +55,14 @@ export default {
     async refresh(){
       await EventBus.$emit("loadDataServer");
       $("#search-name-id").val("");
+    },
+    
+    arrowUp(){
+      EventBus.$emit("arrowUp");
+    },
+
+    arrowDown(){
+      EventBus.$emit("arrowDown");
     }
   },
 

@@ -127,6 +127,7 @@ export default {
 
     // hàm lấy dữ liệu từ server cho trang thứ page
     async getDataPage(page){
+      this.selectedRow = 0;
       this.selectedPage = page;
       let startIndex = (page-1)*this.countEmployeePerPage;
       this.employeeList = this.countEmployee.slice(startIndex, startIndex + this.countEmployeePerPage);
@@ -196,6 +197,11 @@ export default {
       let employee = this.employeeList[index];
       EventBus.$emit("showWarning", employee);
       console.log(employee);
+    },
+
+    arrowUp(){
+      console.log("up");
+      this.selectedRow = this.selectedRow + 1;
     }
   },
 
@@ -219,9 +225,18 @@ export default {
         this.selectedPage = 1;
       })
       EventBus.$emit("stopLoading");
+    }),
+
+    EventBus.$on("arrowUp", ()=>{
+      if(this.selectedRow > 0)
+        this.selectedRow --;
+    }),
+
+    EventBus.$on("arrowDown", ()=>{
+      this.selectedRow ++;
     })
   },
 };
 </script>
 
-<style scoped src="../css/table.css"></style>
+<style src="../css/table.css"></style>

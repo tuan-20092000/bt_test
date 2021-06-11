@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="wrapper">
-      <SideBar/>
+        <SideBar/>
         <div class="content">
           <WorkingMode 
             v-if="showModeWorking"
@@ -42,3 +42,4 @@ export default {
 </script>
 
 <style src="./css/app.css"></style>
+<style src="./css/Common.css"></style>

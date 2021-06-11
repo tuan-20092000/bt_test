@@ -15,11 +15,11 @@ namespace MISA.Ifarstructure.Repository
     {
         // chuỗi kết nối database
         string connectionString = "" +
-            "Host = 127.0.0.1;" +
+            "Host = 47.241.69.179;" +
             "Port = 3306;" +
-            "Database = employee;" +
-            "User Id = root;" +
-            "Password = 20092902";
+            "Database = MF848_AMIST_NHDUONG;" +
+            "User Id = nvmanh;" +
+            "Password = 12345678";
         IDbConnection dbConnection;
 
         public EmployeeRepository()
@@ -34,7 +34,7 @@ namespace MISA.Ifarstructure.Repository
         /// <returns>Tất cả nhân viên</returns>
         public List<Employee> GetAll()
         {
-            var sqlQuery = "Select * from employee order by DateAdd DESC";
+            var sqlQuery = "Select * from Employee";
             var employees = dbConnection.Query<Employee>(sqlQuery).ToList();
             return employees;
         }

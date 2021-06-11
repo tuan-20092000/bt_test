@@ -1,6 +1,6 @@
 <template>
-  <div class="wrap-form" v-if="showFormDetail">
-    <div class="form-detail">
+  <div class="wrap-form" v-if="showFormDetail" @keyup.shift.tab.exact="lastTab()" @keyup.esc="cancelFormDetail">
+    <div class="form-detail" >
       <div class="form-header">
         <div class="form-title">Thông tin nhân viên</div>
         <div class="checkbox">
@@ -18,10 +18,12 @@
             <div class="form-content-left">
               <div class="row-input">
                 <div class="employeeCode flex-col">
+                  <button class="btn-focus" id="id1"></button>
                   <label for="EmployeeCode">Mã<span style="color: red"> *</span></label>
                   <input v-model="employee.employeeCode" 
                     @blur="handleBlur($event)"
-                    ref= "employeeCode" 
+                    ref= "employeeCode"
+                    
                     type="text" name="employeeCode" required/>
                 </div>
                 <div class="fullName flex-col">
@@ -101,7 +103,8 @@
           <button v-on:click="cancelFormDetail" class="btn-cancel btn-primary">Hủy</button>
           <div class="float-right">
             <button v-on:click="save" class="btn-save btn-primary">Cất</button>
-            <button v-on:click="saveAndAdd" class="btn-saveAndadd btn-secondary">Cất và thêm</button>
+            <button v-on:click="saveAndAdd" class="btn-saveAndadd btn-secondary" ref="saveAndAdd">Cất và thêm</button>
+            <button class="btn-focus" id="id" @keyup.tab="tabFirst"></button>
           </div>
       </div>
     </div>
@@ -303,6 +306,23 @@ export default {
           timer: 3000,
         });
     },
+
+    tabFirst(){
+      if($(':focus') != undefined){
+        if($(':focus').attr('id') == "id"){
+          this.$refs.employeeCode.focus();
+        }
+      }
+      
+    },
+
+    lastTab(){
+      if($(':focus') != undefined){
+        if($(':focus').attr('id') == "id1"){
+          this.$refs.saveAndAdd.focus();
+        }
+      }
+    }
   },
 
   mounted(){
@@ -328,6 +348,7 @@ export default {
     EventBus.$on("deleteEmployee",  (employee) =>{
       this.deleteEmployee(employee);
     });
+
   }
 };
 </script>
