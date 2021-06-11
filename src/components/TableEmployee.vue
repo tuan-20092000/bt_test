@@ -34,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(employee, index) in employeeList" :key="index" v-on:click="active(index)">
+          <tr v-for="(employee, index) in employeeList" :key="index" v-on:click="active(index)" v-on:dblclick="edit(index)">
             <td v-bind:class="{'selected' : (index == selectedRow)}" style="height: 46px" class="check">
               <input type="checkbox" name="" id="" />
             </td>

@@ -37,11 +37,16 @@
               </div>
               <div class="row-input flex-col">
                 <label for="companyName">Đơn vị<span style="color: red"> *</span></label>
-                <input 
+                <!-- <input 
                   v-model="employee.companyName" 
                   @blur="handleBlur($event)" 
                   ref="companyName"
-                  type="text" name="companyName" required/>
+                  type="text" name="companyName" required/> -->
+                <Combobox :data="[
+                  {text:'Công ty cổ phần MISA', value:0},
+                  {text:'Công ty cổ phần ARMY', value:1},
+                  {text:'Công ty cổ phần SAMI', value:2},
+                ]" :width="385" :height="32" />
               </div>
               <div class="row-input flex-col">
                 <label for="Position">Chức danh</label>
@@ -113,6 +118,7 @@
 
 <script>
 const axios = require("axios");
+import Combobox from './Combobox.vue';
 import EventBus from './../main.js';
 import $ from "jquery";
 import swal from 'sweetalert';
@@ -136,6 +142,10 @@ export default {
 
       fieldMissingData: null,
     }
+  },
+
+  components:{
+    Combobox,
   },
 
   methods: {

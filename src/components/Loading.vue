@@ -19,6 +19,25 @@
                 </div>
             </div>
         </div>
+
+        <div class="wrap-loading">
+            <div class="notify">
+                <img src="../assets/icon/x.svg" alt="">
+                <div class="main-notify">
+                    <div class="title-notify">
+                        Đóng Form thông tin chung
+                    </div>
+                    <div class="content-notify">
+                        Bạn có chắc muốn đóng form nhập <span style="font-weight:bold;">"Thông tin chung của
+                            thủ tục 603"</span> hay không?
+                    </div>
+                </div>
+                <div class="footer">
+                    <button class="btn-cancel">Hủy</button>
+                    <button class="btn-delete">Xóa</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -80,3 +99,4 @@ export default {
 </script>
 
 <style src="../css/loading.css"></style>
+<style src="../css/Common.css"></style>
