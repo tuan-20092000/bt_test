@@ -1,5 +1,5 @@
 .<template>
-    <div class="combo-box-wraper" id="hd-combo-box" v-on:keyup.38 = "moveUp()" 
+    <div class="combo-box-wraper" id="combo-box" v-on:keyup.38 = "moveUp()" 
         v-on:keyup.40 = "moveDown()" v-on:keyup.enter = "selectedByEnter()" >
         <div class="combo-box-wrap" v-on:change = "search()" :class="{'no-data':!valid ,'active':isactive}" :style="[widthLength, heightLength]">
             <input type="text" v-model="selectValue.text" v-on:input = "search()" ref = "value">
@@ -70,8 +70,8 @@ export default {
         let me = this;
         // đóng combo box khi nhấp ra ngoài màn hình
         document.addEventListener('mouseup', function(e) {
-        var container = document.getElementById('hd-combo-box');
-        if (!container.contains(e.target)) {
+        var container = document.getElementById('combo-box');
+        if (container!=null && !container.contains(e.target)) {
             me.hideform();
             me.isactive = false;
             if(me.selectValue.text != undefined && me.selectValue.text != '') {
@@ -251,7 +251,7 @@ export default {
         display: block !important;  
     }
     .no-data{
-        border: 2px solid red;
+        border: 1px solid red;
     }
     .combo-box-wrap input[type="text"]{
         margin-top: 0px;
@@ -269,9 +269,12 @@ export default {
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        border-left: 1px solid black;
-        /* border-left:1px solid rgb(104, 102, 102); */
     }
+
+    .combo-box-wrap .combo-select-show:hover{
+        background-color: #8d9096;
+    }
+
     .selected-list-combo-box{
         text-align: left;
         border: 1px solid rgb(104, 102, 102);
@@ -299,7 +302,7 @@ export default {
         background: rgb(112, 184, 202) !important ;
     }
     .active{
-        border: 2px solid rgb(53, 202, 53) !important;
+        border: 1px solid rgb(53, 202, 53) !important;
     }
     .ticker-icon{
         height: 100%;

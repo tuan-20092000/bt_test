@@ -1,7 +1,7 @@
-.header {
+.amis-header {
     height: 48px;
     width: 100%;
-    display: inline-flex;
+    display: flex;
     align-items: center;
   }
   
@@ -16,6 +16,10 @@
   
   .tooltip-content {
     display: inline;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'notosans-semibold';
+
   }
   
   .img-expand_more {
@@ -25,7 +29,7 @@
     cursor: pointer;
   }
   
-  .header .space {
+  .amis-header .space {
     width: 400px;
   }
   
@@ -72,4 +76,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      font-family: 'notosans-semibold';
+      font-weight: 600;
+      font-size: 14px;
+      font-family: 'notosans-semibold';
+      
   }

@@ -5,7 +5,7 @@
       <img
         class="img-amis"
         src="https://actappg1.misacdn.net/img/Logo_Module_TiengViet_White.66947422.svg"
-        alt="img-cukcuk"
+        alt="img-amis"
       />
     </div>
     <div class="menu-item">
@@ -124,3 +124,4 @@ export default {
 </script>
 
 <style src="../css/sidebar.css"></style>
+<style src="../css/googlefont.css"></style>

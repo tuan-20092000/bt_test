@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="amis-header">
     <div class="three-stripes"></div>
     <div class="tooltip">
       <div class="tooltip-content">CÔNG TY CỔ PHẦN MISA</div>
@@ -64,4 +64,6 @@ export default {
 };
 </script>
 
-<style src="../css/header.css"></style>
+<style src="../css/googlefont.css"></style>
+<style scope src="../css/header.css"></style>
+

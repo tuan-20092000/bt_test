@@ -46,7 +46,7 @@
                   {text:'Công ty cổ phần MISA', value:0},
                   {text:'Công ty cổ phần ARMY', value:1},
                   {text:'Công ty cổ phần SAMI', value:2},
-                ]" :width="385" :height="32" />
+                ]" :width="392" :height="32" />
               </div>
               <div class="row-input flex-col">
                 <label for="Position">Chức danh</label>
@@ -66,6 +66,8 @@
                     <label for="male">Nam</label>
                     <input v-model="employee.gender" type="radio" name="Gender" id="female" value= 1 />
                     <label for="female">Nữ</label>
+                    <input v-model="employee.gender" type="radio" name="Gender" id="other" value= 2 />
+                    <label for="other">Khác</label>
                   </div>
                 </div>
               </div>
@@ -91,13 +93,31 @@
               <input type="text" name="Address" />
             </div>
             <div class="row-input">
-              <div class="PhoneNumber">
-                <label for="PhoneNumber">Điện thoại di động</label>
+              <div class="PhoneNumber div-normal">
+                <label for="PhoneNumber">ĐT di động</label>
                 <input v-model="employee.phoneNumber" type="text" name="PhoneNumber" />
               </div>
-              <div class="Email">
+              <div class="TelephoneNumber div-normal">
+                <label for="TelephoneNumber">ĐT cố định</label>
+                <input v-model="employee.telephoneNumber" type="text" name="TelephoneNumber" />
+              </div>
+              <div class="Email div-normal">
                 <label for="Email">Email</label>
                 <input type="email" name="Email" />
+              </div>
+            </div>
+            <div class="row-input">
+              <div class="BankAccountNumber div-normal">
+                <label for="BankAccountNumber">Tài khoản ngân hàng</label>
+                <input v-model="employee.phoneNumber" type="text" name="BankAccountNumber" />
+              </div>
+              <div class="BankName div-normal">
+                <label for="BankName">Tên ngân hàng</label>
+                <input v-model="employee.phoneNumber" type="text" name="BankName" />
+              </div>
+              <div class="BankBranchName div-normal">
+                <label for="BankBranchName">Tên chi nhánh</label>
+                <input v-model="employee.phoneNumber" type="text" name="BankBranchName" />
               </div>
             </div>
           </div>
@@ -364,3 +384,4 @@ export default {
 </script>
 
 <style src="../css/employeedetail.css"></style>
+<style src="../css/googlefont.css"></style>

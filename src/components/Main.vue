@@ -1,6 +1,6 @@
 <template>
   <div class="main" @keyup.up.exact="arrowUp()" @keyup.down.exact="arrowDown()">
-    <div class="main-title">
+    <div class="main-title" style="top:0px">
       <div class="main-title-content">
         <div class="title">Nhân viên</div>
         <div class="main-title-btn">
@@ -13,32 +13,39 @@
           </button>
         </div>
       </div>
-    </div>
-    <div class="main-body">
-      <div class="control">
-        <div class="excution">
-          <span>Thực hiện hàng loạt</span>
-          <img src="../assets/drop_down.svg" alt="" />
-        </div>
-        <div class="space"></div>
-        <div class="search-name-id">
-          <input id="search-name-id" type="text" placeholder="Tìm theo mã, tên nhân viên" />
-          <img src="../assets/search.svg" alt="search" />
-        </div>
-        <div class="three-btn">
-          <img v-on:click="refresh" src="../assets/refresh.svg" alt="" />
-          <img src="../assets/facebook.svg" alt="" />
-          <img src="../assets/setting.svg" alt="" />
+      </div>
+    <div class="layout">
+        <div class="grid">
+          <div class="excution">
+            <span>Thực hiện hàng loạt</span>
+            <img src="../assets/drop_down.svg" alt="" />
+          </div>
+        <div class="right-control">
+          <div class="search-name-id">
+            <input
+              id="search-name-id"
+              type="text"
+              placeholder="Tìm theo mã, tên nhân viên"
+            />
+            <img src="../assets/search.svg" alt="search" />
+          </div>
+          <div class="three-btn">
+            <img v-on:click="refresh" src="../assets/refresh.svg" alt="" />
+            <img src="../assets/facebook.svg" alt="" />
+            <img src="../assets/setting.svg" alt="" />
+          </div>
         </div>
       </div>
-      <TableEmployee />
+      <div class="div-flex">
+          <TableEmployee />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import TableEmployee from "./TableEmployee.vue";
-import EventBus from './../main.js';
+import EventBus from "./../main.js";
 import $ from "jquery";
 export default {
   components: {
@@ -47,36 +54,34 @@ export default {
 
   methods: {
     // hiển thị form thêm mới nhân viên
-    addEmployee(){
+    addEmployee() {
       EventBus.$emit("addEmployee");
     },
 
     // sự kiện ấn refresh
-    async refresh(){
+    async refresh() {
       await EventBus.$emit("loadDataServer");
       $("#search-name-id").val("");
     },
-    
-    arrowUp(){
+
+    arrowUp() {
       EventBus.$emit("arrowUp");
     },
 
-    arrowDown(){
+    arrowDown() {
       EventBus.$emit("arrowDown");
-    }
+    },
   },
 
   mounted() {
     // lắng nghe sự kiện người dùng ấn enter trên input tìm kiếm
-    $("#search-name-id").on('keyup', function (e) {
-      if (e.key === 'Enter' || e.keyCode === 13) {
+    $("#search-name-id").on("keyup", function (e) {
+      if (e.key === "Enter" || e.keyCode === 13) {
         let s = this.value;
         EventBus.$emit("searchByNameId", s);
       }
     });
-
-  }
-
+  },
 };
 </script>
 

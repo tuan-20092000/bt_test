@@ -70,6 +70,27 @@
           "lib/netstandard2.0/K4os.Hash.xxHash.dll": {}
         }
       },
+      "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -420,6 +441,48 @@
         "lib/netstandard1.6/K4os.Hash.xxHash.xml",
         "lib/netstandard2.0/K4os.Hash.xxHash.dll",
         "lib/netstandard2.0/K4os.Hash.xxHash.xml"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
+      "sha512": "ETjSBHMp3OAZ4HxGQYpwyGsD8Sw5FegQXphi0rpoGMT74S4+I2mm7XJEswwn59XAaKOzC15oDSOWEE8SzDCd6Q==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.abstractions/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.Extensions.Primitives/5.0.0": {
+      "sha512": "cI/VWn9G1fghXrNDagX9nYaaB/nokkZn0HYAawGaELQrl8InSezfe9OnfPZLcJq3esXxygh3hkq2c3qoV3SDyQ==",
+      "type": "package",
+      "path": "microsoft.extensions.primitives/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Primitives.dll",
+        "lib/net461/Microsoft.Extensions.Primitives.xml",
+        "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+        "microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
@@ -883,23 +946,24 @@
     "net5.0": [
       "Dapper >= 2.0.90",
       "MISA.Core >= 1.0.0",
+      "Microsoft.Extensions.Configuration.Abstractions >= 5.0.0",
       "MySql.Data >= 8.0.25"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nvtuan\\.nuget\\packages\\": {}
+    "C:\\Users\\tuan0\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nvtuan\\New folder\\bt_test\\MISA.AMIS\\MISA.Ifarstructure\\MISA.Ifarstructure.csproj",
+      "projectUniqueName": "D:\\Misa\\BT_Test\\bt_test\\MISA.AMIS\\MISA.Ifarstructure\\MISA.Ifarstructure.csproj",
       "projectName": "MISA.Ifarstructure",
-      "projectPath": "C:\\Users\\Nvtuan\\New folder\\bt_test\\MISA.AMIS\\MISA.Ifarstructure\\MISA.Ifarstructure.csproj",
-      "packagesPath": "C:\\Users\\Nvtuan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nvtuan\\New folder\\bt_test\\MISA.AMIS\\MISA.Ifarstructure\\obj\\",
+      "projectPath": "D:\\Misa\\BT_Test\\bt_test\\MISA.AMIS\\MISA.Ifarstructure\\MISA.Ifarstructure.csproj",
+      "packagesPath": "C:\\Users\\tuan0\\.nuget\\packages\\",
+      "outputPath": "D:\\Misa\\BT_Test\\bt_test\\MISA.AMIS\\MISA.Ifarstructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Nvtuan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tuan0\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -913,8 +977,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Nvtuan\\New folder\\bt_test\\MISA.AMIS\\MISA.Core\\MISA.Core.csproj": {
-              "projectPath": "C:\\Users\\Nvtuan\\New folder\\bt_test\\MISA.AMIS\\MISA.Core\\MISA.Core.csproj"
+            "D:\\Misa\\BT_Test\\bt_test\\MISA.AMIS\\MISA.Core\\MISA.Core.csproj": {
+              "projectPath": "D:\\Misa\\BT_Test\\bt_test\\MISA.AMIS\\MISA.Core\\MISA.Core.csproj"
             }
           }
         }
@@ -932,6 +996,10 @@
           "Dapper": {
             "target": "Package",
             "version": "[2.0.90, )"
+          },
+          "Microsoft.Extensions.Configuration.Abstractions": {
+            "target": "Package",
+            "version": "[5.0.0, )"
           },
           "MySql.Data": {
             "target": "Package",
@@ -953,7 +1021,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces.Ifarstructures
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository : IBaseRepository<Employee>
     {
-        // lấy ra tất cả nhân viên trong database
-        List<Employee> GetAll();
+        bool CheckEmployeeCodeExist(string EmployeeCode);
 
-        // lấy ra nhân viên có mã là EmployeeId
-        Employee GetById(Guid EmployeeId);
+        //List<Employee> Search(string s);
 
-        List<Employee> Search(string s);
-
-        List<Employee> Paging(int indexStart, int count);
+        //List<Employee> Paging(int indexStart, int count);
     }
 }

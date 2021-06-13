@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MISA.Core.Entities;
+using MISA.Core.Interfaces.Ifarstructures;
 using MISA.Core.Interfaces.IServices;
 using MySql.Data.MySqlClient;
 using System;
@@ -11,101 +12,33 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
-        // chuỗi kết nối vs database
-        string connectionString = "" +
-           "Host = 127.0.0.1;" +
-           "Port = 3306;" +
-           "Database = employee;" +
-           "User Id = root;" +
-           "Password = 20092902";
-        IDbConnection dbConnection;
-
-        public EmployeeService()
+        IEmployeeRepository _employeeRepository;
+        ServiceResult serviceResult = new ServiceResult();
+        public EmployeeService(IEmployeeRepository employeeRepository) :base(employeeRepository)
         {
-            dbConnection = new MySqlConnection(connectionString);
+            _employeeRepository = employeeRepository;
         }
-
-        /// <summary>
-        ///   Hàm xóa nhân viên
-        ///   CreatedBy: Tuấn Nguyễn (27/05/2021)
-        /// </summary>
-        /// <param name="EmployeeId">Nhân viên</param>
-        /// <returns>số bản ghi bị ảnh hưởng (xóa được)</returns>
-        public int? Delete(string EmployeeId)
+        
+        public override ServiceResult Insert(Employee employee)
         {
-            var sqlQuery = $"Delete from employee where EmployeeId = '{EmployeeId}'";
-            var rowAffects = dbConnection.Execute(sqlQuery);
-            return rowAffects;
-        }
-
-
-        /// <summary>
-        ///  Hàm thêm mới 1 nhân viên
-        ///  CreatedBy: Tuấn Nguyễn (27/05/2021)
-        /// </summary>
-        /// <param name="employee">nhân viên</param>
-        /// <returns>số bản ghi bị ảnh hưởng (thêm mới được)</returns>
-        public int? Insert(Employee employee)
-        {
-            if (CheckCode(employee))
+            var employeeCode = employee.EmployeeCode;
+            if (CheckEmployeeCodeExist(employeeCode))
             {
-                return 0;
+                serviceResult.isValid = false;
+                serviceResult.Messengers.Add($"Mã nhân viên <{employeeCode}> đã tồn tại, vui lòng kiểm tra lại.");
+                serviceResult.Data.Add(employee);
+                serviceResult.VFieldError = "Mã nhân viên";
+                serviceResult.EFieldError = "EmployeeCode";
+                return serviceResult;
             }
-            employee.EmployeeId = Guid.NewGuid();
-            var rowAffects = dbConnection.Execute("Proc_InsertEmployee", employee, commandType: CommandType.StoredProcedure);
-            return rowAffects;
+            return _employeeRepository.Insert(employee);
         }
 
-        // hàm check xem có trùng mã không
-        // trả về true nếu trùng, false nếu không trùng (dùng cho Insert)
-        public bool CheckCode(Employee employee)
+        public bool CheckEmployeeCodeExist(string EmployeeCode)
         {
-            var EmployeeId = employee.EmployeeId.ToString();
-            var EmployeeCode = employee.EmployeeCode;
-            var sqlQuery = "Select * from employee " +
-                $"where EmployeeCode = '{EmployeeCode}'";
-            var res = dbConnection.Query<Employee>(sqlQuery).FirstOrDefault();
-            if(res != null)
-            {
-                return true;
-            }
-            return false;
-        }
-
-
-        /// <summary>
-        ///     Hàm update nhân viên
-        ///     CreatedBy: Tuấn Nguyễn (27/05/2021)
-        /// </summary>
-        /// <param name="employee">Nhân viên</param>
-        /// <param name="EmployeeId">ID nhân viên</param>
-        /// <returns>Số lượng bản ghi bị ảnh hưởng (update được)</returns>
-        public int? Update(Employee employee)
-        {
-            if (CheckCodeAndId(employee))
-            {
-                return 0;
-            }
-            var rowAffect = dbConnection.Execute("Proc_UpdateEmployee", employee, commandType: CommandType.StoredProcedure);
-            return rowAffect;
-        }
-
-        // hàm check xem có trùng mã không
-        // trả về true nếu trùng, false nếu không trùng (dùng cho Update)
-        public bool CheckCodeAndId(Employee employee)
-        {
-            var EmployeeId = employee.EmployeeId.ToString();
-            var EmployeeCode = employee.EmployeeCode;
-            var sqlQuery = "Select * from employee " +
-                $"where EmployeeCode = '{EmployeeCode}' and EmployeeId != '{EmployeeId}' ";
-            var res = dbConnection.Query<Employee>(sqlQuery).FirstOrDefault();
-            if (res != null)
-            {
-                return true;
-            }
-            return false;
+            return _employeeRepository.CheckEmployeeCodeExist(EmployeeCode);
         }
     }
 

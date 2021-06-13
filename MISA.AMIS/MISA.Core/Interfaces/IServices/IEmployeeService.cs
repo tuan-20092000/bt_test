@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces.IServices
 {
-    public interface IEmployeeService
+    public interface IEmployeeService : IBaseService<Employee>
     {
-        // thêm mới 1 nhân viên
-        int? Insert(Employee employee);
-
-        // sửa thông tin của 1 nhân viên
-        int? Update(Employee employee);
-
-        // xóa 1 nhân viên
-        int? Delete(string EmployeeId);
+        bool CheckEmployeeCodeExist(string EmployeeCode);
     }
 }

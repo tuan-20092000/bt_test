@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="loading" class="wrap-loading">
-            <div class="loader"></div>
+            <img src="../Resource/loading.svg" alt="loading">
         </div>
         <div v-if="warning" class="wrap-loading">
             <div class="warning">
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="wrap-loading">
+        <div v-if="loading" class="wrap-loading">
             <div class="notify">
                 <img src="../assets/icon/x.svg" alt="">
                 <div class="main-notify">
@@ -99,4 +99,4 @@ export default {
 </script>
 
 <style src="../css/loading.css"></style>
-<style src="../css/Common.css"></style>
+<style src="../css/googlefont.css"></style>

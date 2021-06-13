@@ -7,8 +7,13 @@
             v-if="showModeWorking"
             v-on:showHideFormMode="showHideFormMode"
           />
-          <Header v-on:showHideFormMode="showHideFormMode"/>
-          <Main/>
+          <div>
+            <Header v-on:showHideFormMode="showHideFormMode"/>
+            <div>
+              <Main/>
+            </div>
+          </div>
+          
         </div>
     </div>
     <EmployeeDetail />
@@ -42,4 +47,4 @@ export default {
 </script>
 
 <style src="./css/app.css"></style>
-<style src="./css/Common.css"></style>
+<style src="./css/googlefont.css"></style>
