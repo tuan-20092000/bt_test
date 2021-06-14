@@ -6,36 +6,36 @@
       <img
         v-on:click="showHideFormMode"
         class="img-expand_more"
-        src="../assets/expand_more.svg"
+        src="../Resource/img/expland-more-big.svg"
         alt="img-expand_more"
       />
     </div>
 
-    <div class="space"></div>
+      <div class="div-space"></div>
 
     <div class="div-search">
       <input type="text" placeholder="Nhập từ khóa tìm kiếm" />
-      <img src="../assets/search.svg" alt="search" />
+      <img src="../Resource/img/find.svg" alt="search" />
     </div>
 
     <div class="header-menu-icon">
-      <img src="../assets/more.svg" alt="more_svg" />
+      <img src="../Resource/img/group.svg" alt="more_svg" />
     </div>
 
     <div class="header-menu-icon">
-      <img src="../assets/setting.svg" alt="more_svg" />
+      <img src="../Resource/img/setting.svg" alt="more_svg" />
     </div>
 
     <div class="header-menu-icon">
-      <img src="../assets/message.svg" alt="more_svg" />
+      <img src="../Resource/img/support.svg" alt="more_svg" />
     </div>
 
     <div class="header-menu-icon">
-      <img src="../assets/help_outline.svg" alt="more_svg" />
+      <img src="../Resource/img/notify.svg" alt="more_svg" />
     </div>
 
     <div class="header-menu-icon">
-      <img src="../assets/notification.svg" alt="more_svg" />
+      <img src="../Resource/avatar-default.png" alt="more_svg" />
     </div>
 
     <div class="div-username">

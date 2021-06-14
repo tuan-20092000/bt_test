@@ -2,7 +2,7 @@
     width: 20%;
     max-width: 178px;
     height: 100vh;
-    background-color: #38393d;
+    background-color:#393a3d;
     display: flex;
     flex-direction: column;
   }
@@ -43,7 +43,7 @@
   
   .item:hover{
     cursor: pointer;
-    background-color: rgb(136, 125, 125);
+    background-color: #616164;
   }
   
   .item-icon{

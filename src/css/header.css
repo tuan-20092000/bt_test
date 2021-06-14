@@ -29,8 +29,8 @@
     cursor: pointer;
   }
   
-  .amis-header .space {
-    width: 400px;
+  .amis-header .div-space {
+    flex-grow: 1;
   }
   
   .div-search {
@@ -42,8 +42,9 @@
   .div-search input {
     width: 200px;
     height: 32px;
-    border: 1px solid black;
+    border: 1px solid #babec5;
     padding: 6px 10px;
+    outline: none;
   }
   
   .div-search img {

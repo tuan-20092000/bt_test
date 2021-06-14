@@ -2,7 +2,7 @@
     <div class="combo-box-wraper" id="combo-box" v-on:keyup.38 = "moveUp()" 
         v-on:keyup.40 = "moveDown()" v-on:keyup.enter = "selectedByEnter()" >
         <div class="combo-box-wrap" v-on:change = "search()" :class="{'no-data':!valid ,'active':isactive}" :style="[widthLength, heightLength]">
-            <input type="text" v-model="selectValue.text" v-on:input = "search()" ref = "value">
+            <input type="text" v-model="this._props.departmentName" v-on:input = "search()" ref = "value">
             <div class="combo-select-show" v-on:click = "toggleSelect()">
                 <i class="material-icons">
                     arrow_drop_down
@@ -33,7 +33,7 @@ export default {
         height:Number,
         // thông tin của các select trong combo box
         data:Array,
-        companyName: String,
+        departmentName: String,
     },
     data(){
         return{
@@ -50,6 +50,7 @@ export default {
             // giá trị của dòng đang được đánh dấu trong combobox
             rowMarked:-1,
             comboboxId:this._props.id,
+            department: this._props.departmentName,
             isactive:false,
             widthLength:{
                 width: `${this._props.width}px`,
@@ -85,6 +86,20 @@ export default {
         this.$el.getValue = function(){return this.value;}
         this.$el.getText = function(){return this.text;}
     },
+
+    computed:{
+        bindCombobox: function(){
+                if(this.department != null){
+                    console.log("computed");
+                for(var property in this.cacheData){
+                    if(this.cacheData[property].text == this.departmentName){
+                        select = {...this.cacheData[property]};
+                    }
+                }
+            }
+        }
+    },
+
     methods:{
         // hàm xử lý khi nhấn nút xuống
         moveDown(){
@@ -242,7 +257,7 @@ export default {
     .combo-box-wrap{
         margin-top: 5px;
         display: flex;
-        border: 1px solid black;
+        border: 1px solid #babec5;
         align-items: center;
         box-sizing: border-box;
         justify-content: center;
@@ -260,7 +275,7 @@ export default {
         outline: 0;
         width: 100%;
         padding: 5px;
-        font-size:16px ;
+        font-size:13px ;
     }
     .combo-box-wrap .combo-select-show{
         width: 32px;
@@ -272,7 +287,7 @@ export default {
     }
 
     .combo-box-wrap .combo-select-show:hover{
-        background-color: #8d9096;
+        background-color: #ebedf0;
     }
 
     .selected-list-combo-box{
@@ -291,18 +306,18 @@ export default {
         align-items: center;
     }
     .selected-list-combo-box .combo-selection:hover{
-        background:rgb(61, 46, 46);
-        color: white;
+        color: #35bf22;
+        background-color: #ebedf0;
     }
     .item-selected{
-        background: #09610e;
-        color: rgb(255, 255, 255);
+        color: #35bf22;
+        background-color: #ebedf0;
     }
     .row-current{
         background: rgb(112, 184, 202) !important ;
     }
     .active{
-        border: 1px solid rgb(53, 202, 53) !important;
+        border: 1px solid #2ca01c !important;
     }
     .ticker-icon{
         height: 100%;

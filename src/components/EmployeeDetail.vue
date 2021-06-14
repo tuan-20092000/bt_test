@@ -1,6 +1,12 @@
 <template>
   <div class="wrap-form" v-if="showFormDetail" @keyup.shift.tab.exact="lastTab()" @keyup.esc="cancelFormDetail">
-    <div class="form-detail" >
+    <div class="form-detail">
+      <div class="div-tool">
+        <img src="../Resource/img/support.svg" alt="" title="Giúp (F1)">
+        <div class="inline" v-on:click="cancelFormDetail()">
+          <img src="../Resource/img/x.svg" alt="" title="Đóng (ESC)">
+        </div>
+      </div>
       <div class="form-header">
         <div class="form-title">Thông tin nhân viên</div>
         <div class="checkbox">
@@ -23,16 +29,15 @@
                   <input v-model="employee.employeeCode" 
                     @blur="handleBlur($event)"
                     ref= "employeeCode"
-                    
                     type="text" name="employeeCode" required/>
                 </div>
-                <div class="fullName flex-col">
-                  <label for="FullName">Tên<span style="color: red"> *</span></label>
+                <div class="employeeName flex-col">
+                  <label for="employeeName">Tên<span style="color: red"> *</span></label>
                   <input 
-                    v-model="employee.fullName" 
+                    v-model="employee.employeeName" 
                     @blur="handleBlur($event)" 
-                    ref="fullName"
-                    type="text" name="fullName" required/>
+                    ref="employeeName"
+                    type="text" name="employeeName" required/>
                 </div>
               </div>
               <div class="row-input flex-col">
@@ -42,15 +47,15 @@
                   @blur="handleBlur($event)" 
                   ref="companyName"
                   type="text" name="companyName" required/> -->
-                <Combobox :data="[
-                  {text:'Công ty cổ phần MISA', value:0},
-                  {text:'Công ty cổ phần ARMY', value:1},
-                  {text:'Công ty cổ phần SAMI', value:2},
+                <Combobox :departmentName="employee.departmentName" :data="[
+                  {text:'Phòng nhân sự', value:0},
+                  {text:'Phòng kinh doanh', value:1},
+                  {text:'Phòng marketing', value:2},
                 ]" :width="392" :height="32" />
               </div>
               <div class="row-input flex-col">
                 <label for="Position">Chức danh</label>
-                <input v-model="employee.position" type="text" name="Position" />
+                <input v-model="employee.employeePosition" type="text" name="Position" />
               </div>
             </div>
             <div class="form-content-right">
@@ -74,23 +79,23 @@
               <div class="row-input">
                 <div class="EntityCard flex-col">
                   <label for="EntityCard">Số CMND</label>
-                  <input v-model="employee.identityCard" type="text" name="EntityCard" />
+                  <input v-model="employee.identityNumber" type="text" name="EntityCard" />
                 </div>
                 <div class="DateSupply flex-col">
                   <label for="DateSupply">Ngày cung cấp</label>
-                  <input type="date" name="DateSupply" />
+                  <input v-model="employee.identityDate" type="date" name="DateSupply" />
                 </div>
               </div>
               <div class="row-input flex-col">
                 <label for="AddressSuplly">Nơi cấp</label>
-                <input type="text" name="AddressSuplly" />
+                <input v-model="employee.identityPlace" type="text" name="AddressSuplly" />
               </div>
             </div>
           </div>
           <div class="form-content-bottom">
             <div class="row-input flex-col">
               <label for="Address">Địa chỉ</label>
-              <input type="text" name="Address" />
+              <input v-model="employee.address" type="text" name="Address" />
             </div>
             <div class="row-input">
               <div class="PhoneNumber div-normal">
@@ -103,21 +108,21 @@
               </div>
               <div class="Email div-normal">
                 <label for="Email">Email</label>
-                <input type="email" name="Email" />
+                <input v-model="employee.email" type="email" name="Email" />
               </div>
             </div>
             <div class="row-input">
               <div class="BankAccountNumber div-normal">
                 <label for="BankAccountNumber">Tài khoản ngân hàng</label>
-                <input v-model="employee.phoneNumber" type="text" name="BankAccountNumber" />
+                <input v-model="employee.bankAccountNumber" type="text" name="BankAccountNumber" />
               </div>
               <div class="BankName div-normal">
                 <label for="BankName">Tên ngân hàng</label>
-                <input v-model="employee.phoneNumber" type="text" name="BankName" />
+                <input v-model="employee.bankName" type="text" name="BankName" />
               </div>
               <div class="BankBranchName div-normal">
                 <label for="BankBranchName">Tên chi nhánh</label>
-                <input v-model="employee.phoneNumber" type="text" name="BankBranchName" />
+                <input v-model="employee.bankBranchName" type="text" name="BankBranchName" />
               </div>
             </div>
           </div>
@@ -149,15 +154,21 @@ export default {
       formMode: null,
       employee : {
         employeeCode : null,
-        fullName : null,
+        employeeName : null,
         gender : 0,
         dateOfBirth : null,
-        identityCard : null,
-        position : null,
-        companyName : null,
-        accountNumber : null,
+        departmentName: null,
+        identityDate : null,
+        identityPlace : null,
+        employeePosition : null,
+        address : null,
+        bankAccountNumber : null,
         bankName : null,
-        branch : null,
+        bankBranchName : null,
+        bankProvinceName : null,
+        phoneNumber : null,
+        telephoneNumber : null,
+        email : null,
       },
 
       fieldMissingData: null,
@@ -186,10 +197,10 @@ export default {
         })
       }else{
         switch(index){
-          case "fullName":
+          case "employeeName":
             this.$nextTick(function (){
-              this.$refs.fullName.focus();
-              this.$refs.fullName.select();
+              this.$refs.employeeName.focus();
+              this.$refs.employeeName.select();
             });
             break;
           case "companyName":
@@ -210,7 +221,7 @@ export default {
     resetForm(){
       let nullEmployee = {
         employeeCode : null,
-        fullName : null,
+        employeeName : null,
         gender : 0,
         dateOfBirth : null,
         identityCard : null,
@@ -319,7 +330,7 @@ export default {
       switch(fieldName){
         case "employeeCode":
           return "Mã nhân viên";
-        case "fullName":
+        case "employeeName":
           return "Họ tên";
         case "companyName":
           return "Đơn vị";

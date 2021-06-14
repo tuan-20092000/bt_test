@@ -51,16 +51,15 @@
     border-radius: 30px;
     border: 1px solid #8d9096;
     font-weight: 600;
-    background-color: #fff;
   }
   
   .main-title-btn .btn-more:hover{
-    background-color: #b8bcc3;
+    background-color: #d2d3d6;
     cursor: pointer;
   }
   
   .main-title-btn .btn-more:active{
-    background-color: #73757a;
+    background-color: #bbbcbc;
   }
   
   .main-title-btn .btn-add{
@@ -143,7 +142,8 @@
   .search-name-id input{
     width: 240px;
     height: 36px;
-    border: 1px solid #8d9096;
+    outline: none;
+    border: 1px solid #babec5;
     padding: 6px 10px;
   }
   

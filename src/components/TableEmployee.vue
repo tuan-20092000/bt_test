@@ -6,78 +6,33 @@
         <thead>
           <tr>
             <th id="" class="out-left-white bgc-white"></th>
-            <th style="left:16px;" class="check-all " id="check-all">
+            <th style="left: 16px" class="check-all" id="check-all">
               <input type="checkbox" name="" id="" />
             </th>
+            <th style="min-width: 150px; width: 150px" id="">MÃ NHÂN VIÊN</th>
+            <th style="min-width: 250px; width: 250px" id="">TÊN NHÂN VIÊN</th>
+            <th style="min-width: 120px; width: 120px" id="">GIỚI TÍNH</th>
+            <th style="min-width: 150px; width: 150px" id="">NGÀY SINH</th>
+            <th style="min-width: 200px; width: 200px" id="">SỐ CMND</th>
+            <th style="min-width: 250px; width: 250px" id="">CHỨC DANH</th>
+            <th style="min-width: 250px; width: 250px" id="">TÊN ĐƠN VỊ</th>
+            <th style="min-width: 150px; width: 150px" id="">SỐ TÀI KHOẢN</th>
+            <th style="min-width: 250px; width: 250px" id="">TÊN NGÂN HÀNG</th>
             <th
-              style="min-width: 150px; width: 150px;"
-              id=""
-            >
-              MÃ NHÂN VIÊN
-            </th>
-            <th
-              style="min-width: 250px; width: 250px;"
-              id=""
-            >
-              TÊN NHÂN VIÊN
-            </th>
-            <th
-              style="min-width: 120px; width: 120px;"
-              id=""
-            >
-              GIỚI TÍNH
-            </th>
-            <th
-              style="min-width: 150px; width: 150px;"
-              id=""
-            >
-              NGÀY SINH
-            </th>
-            <th
-              style="min-width: 200px; width: 200px;"
-              id=""
-            >
-              SỐ CMND
-            </th>
-            <th
-              style="min-width: 250px; width: 250px;"
-              id=""
-            >
-              CHỨC DANH
-            </th>
-            <th
-              style="min-width: 250px; width: 250px;"
-              id=""
-            >
-              TÊN ĐƠN VỊ
-            </th>
-            <th
-              style="min-width: 150px; width: 150px;"
-              id=""
-            >
-              SỐ TÀI KHOẢN
-            </th>
-            <th
-              style="min-width:250px; width:250px;"
-              id=""
-            >
-              TÊN NGÂN HÀNG
-            </th>
-            <th
-              style="min-width:250px; width:250px;border-right:none;"
+              style="min-width: 250px; width: 250px; border-right: none"
               id=""
             >
               CHI NHÁNH TK NGÂN HÀNG
             </th>
             <th
-              style="width:120px; min-width:120px; right: 30px"
-              class="wiget border-left "
+              style="width: 120px; min-width: 120px; right: 30px"
+              class="wiget border-left"
               id=""
             >
               <div>CHỨC NĂNG</div>
             </th>
-            <th style="right:0px;" id="" class="out-right bgc-white"></th>
-            <th style="right:-30px;" id="" class="out-right bgc-gray"></th>
+            <th style="right: 0px" id="" class="out-right bgc-white"></th>
+            <th style="right: -30px" id="" class="out-right bgc-gray"></th>
           </tr>
         </thead>
         <tbody>
@@ -88,7 +43,10 @@
             v-on:dblclick="edit(index)"
           >
             <td id="" class="out-left-white bgc-white"></td>
-            <td v-bind:class="{ selected: index == selectedRow }" class="col-check">
+            <td
+              v-bind:class="{ selected: index == selectedRow }"
+              class="col-check"
+            >
               <input type="checkbox" name="" id="" />
             </td>
             <td v-bind:class="{ selected: index == selectedRow }">
@@ -118,11 +76,14 @@
             <td v-bind:class="{ selected: index == selectedRow }">
               {{ employee.bankName }}
             </td>
-            <td style="border-right:none;" v-bind:class="{ selected: index == selectedRow }">
+            <td
+              style="border-right: none"
+              v-bind:class="{ selected: index == selectedRow }"
+            >
               {{ employee.bankBranchName }}
             </td>
             <td
-              style="right:30px"
+              style="right: 30px"
               v-bind:class="{ selected: index == selectedRow }"
               class="sticky border-left"
             >
@@ -131,44 +92,64 @@
                 <span v-on:click="showWarning(index)">Xóa</span>
               </div>
             </td>
-            <td style="right:0px;" class="out-right bgc-white"></td>
-            <td style="right:-30px;" class="out-right bgc-gray"></td>
+            <td style="right: 0px" class="out-right bgc-white"></td>
+            <td style="right: -30px" class="out-right bgc-gray"></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div style="bottom:0px;" class="wrap-footer">
+    <div style="bottom: 0px" class="wrap-footer">
       <div class="footer-content">
         <div class="count-record">
           Tổng số: {{ countEmployee.length }} bản ghi
         </div>
+        <div style="position: sticky; left: 60%; right: 40%">
+          <div
+            style="
+              min-width: 215px;
+              max-height: 32px;
+              position: absolute;
+              display: flex;
+              top: -17px;
+              border: 1px solid #babec5;
+            "
+            data-app
+          >
+            <v-select
+              :items="optionCountPerPage"
+              v-model="countEmployeePerPage"
+              @change="changeCountPerPage"
+              solo
+            ></v-select>
+          </div>
+        </div>
         <div class="right-footer">
           <div>
-            <select
+            <!-- <select
             v-model="countEmployeePerPage"
             @change="changeCountPerPage"
             name=""
             id=""
-          >
+            >
             <option value="10" selected>10 bản ghi trên một trang</option>
             <option value="20">20 bản ghi trên một trang</option>
             <option value="30">30 bản ghi trên một trang</option>
             <option value="50">50 bản ghi trên một trang</option>
             <option value="100">100 bản ghi trên một trang</option>
-          </select>
-          <div v-on:click="prevPage" class="front controlpage">Trước</div>
-          <div
-            v-for="page in countPage"
-            :key="page"
-            v-on:click="getDataPage(page)"
-            :class="{ selectedPage: selectedPage == page }"
-            class="page-number"
-          >
-            {{ page }}
+            </select> -->
+
+            <div v-on:click="prevPage" class="front controlpage">Trước</div>
+            <div
+              v-for="page in countPage"
+              :key="page"
+              v-on:click="getDataPage(page)"
+              :class="{ selectedPage: selectedPage == page }"
+              class="page-number"
+            >
+              {{ page }}
+            </div>
+            <div v-on:click="nextPage" class="behind controlpage">Sau</div>
           </div>
-          <div v-on:click="nextPage" class="behind controlpage">Sau</div>
-          </div>
-          
         </div>
       </div>
     </div>
@@ -185,11 +166,19 @@ export default {
       employeeList: {}, // những nhân viên hiển thị lên màn hình
       countEmployee: {}, // tất cả nhân viên trong csdl
       selectedRow: 0, // hàng đang chọn
-      countEmployeePerPage: 10, // số lượng bản ghi / trang
+      countEmployeePerPage: 30, // số lượng bản ghi / trang
       countPage: 1, // số trang
       selectedPage: 1, // trang đang chọn
       employeeNameWarning: null, // tên khách hàng định xóa
       employeeCodeWarning: null, // mã khách hàng định xóa
+
+      optionCountPerPage: [
+        { value: 10, text: "10 bản ghi trên 1 trang" },
+        { value: 20, text: "20 bản ghi trên 1 trang" },
+        { value: 30, text: "30 bản ghi trên 1 trang" },
+        { value: 50, text: "50 bản ghi trên 1 trang" },
+        { value: 100, text: "100 bản ghi trên 1 trang" },
+      ],
     };
   },
 
@@ -339,14 +328,12 @@ export default {
 
       EventBus.$emit("stopLoading");
     }),
-
-    EventBus.$on("arrowUp", () => {
-      if (this.selectedRow > 0) this.selectedRow--;
-    }),
-
-    EventBus.$on("arrowDown", () => {
-      this.selectedRow++;
-    });
+      EventBus.$on("arrowUp", () => {
+        if (this.selectedRow > 0) this.selectedRow--;
+      }),
+      EventBus.$on("arrowDown", () => {
+        this.selectedRow++;
+      });
   },
 };
 </script>

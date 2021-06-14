@@ -27,12 +27,12 @@
               type="text"
               placeholder="Tìm theo mã, tên nhân viên"
             />
-            <img src="../assets/search.svg" alt="search" />
+            <img src="../Resource/img/find.svg" alt="search" />
           </div>
           <div class="three-btn">
-            <img v-on:click="refresh" src="../assets/refresh.svg" alt="" />
-            <img src="../assets/facebook.svg" alt="" />
-            <img src="../assets/setting.svg" alt="" />
+            <img v-on:click="refresh" src="../Resource/img/refresh.svg" alt="" />
+            <img src="../Resource/img/excel.svg" alt="" />
+            <img src="../Resource/img/setting.svg" alt="" />
           </div>
         </div>
       </div>
