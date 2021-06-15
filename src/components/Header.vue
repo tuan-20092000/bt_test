@@ -34,18 +34,22 @@
       <img src="../Resource/img/notify.svg" alt="more_svg" />
     </div>
 
-    <div class="header-menu-icon">
-      <img src="../Resource/avatar-default.png" alt="more_svg" />
-    </div>
-
     <div class="div-username">
-      Nguyễn Văn Tuấn
-      <img
-        class="img-expand_more"
-        src="../assets/expand_more.svg"
-        alt="img-expand_more"
-      />
+      <div class="header-menu-img">
+        <img src="../Resource/avatar-default.png" alt="more_svg" />
+      </div>
+      <div>
+        Nguyễn Văn Tuấn
+      </div>
+      <div>
+        <img
+          class="img-expand_more"
+          src="../assets/expand_more.svg"
+          alt="img-expand_more"
+        />
+      </div>
     </div>
+    
   </div>
 </template>
 

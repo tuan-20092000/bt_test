@@ -1,8 +1,13 @@
-.<template>
+<template>
     <div class="combo-box-wraper" id="combo-box" v-on:keyup.38 = "moveUp()" 
         v-on:keyup.40 = "moveDown()" v-on:keyup.enter = "selectedByEnter()" >
         <div class="combo-box-wrap" v-on:change = "search()" :class="{'no-data':!valid ,'active':isactive}" :style="[widthLength, heightLength]">
-            <input type="text" v-model="this._props.departmentName" v-on:input = "search()" ref = "value">
+            <input type="text"
+                v-model="selectValue.text" 
+                @blur="handleBlur($event)"
+                v-on:input="search()" ref="departmentName"
+                name="departmentName"
+                required>
             <div class="combo-select-show" v-on:click = "toggleSelect()">
                 <i class="material-icons">
                     arrow_drop_down
@@ -58,7 +63,7 @@ export default {
             },
             heightLength:{
                 height: `${this._props.height}px`,
-            }
+            },
             
         };
         
@@ -85,16 +90,11 @@ export default {
         });
         this.$el.getValue = function(){return this.value;}
         this.$el.getText = function(){return this.text;}
-    },
 
-    computed:{
-        bindCombobox: function(){
-                if(this.department != null){
-                    console.log("computed");
-                for(var property in this.cacheData){
-                    if(this.cacheData[property].text == this.departmentName){
-                        select = {...this.cacheData[property]};
-                    }
+        if(this._props.departmentName != null){
+            for(let index = 0; index < this.cacheData.length; index++){
+                if(this.cacheData[index].text == this._props.departmentName){
+                    this.selectValue = {...this.cacheData[index]};
                 }
             }
         }
@@ -121,7 +121,7 @@ export default {
         toggleSelect(){
             this.dataShow = this.cacheData;
             this.isshow=!this.isshow;
-            this.$refs.value.focus();
+            this.$refs.departmentName.focus();
         },
         // hàm xử lý khi nhấn enter
         selectedByEnter(){
@@ -162,11 +162,13 @@ export default {
         },
         // lựa chọn 1 giá trị
         select(value){
-            this.selectValue = {...value};
-            this.hideform();
-            this.valueValid();
-            this.$el.value = this.selectValue.value;
-            this.$el.text = this.selectValue.text;
+            let me = this;
+            me.selectValue = {...value};
+            me.hideform();
+            me.valueValid();
+            me.$el.value = me.selectValue.value;
+            me.$el.text = me.selectValue.text;
+            me.$emit('selectDepartment', me.selectValue.text);
         },
         // chuyển từ tiếng việt có dấu sang không dấu
         fomatText(str){
@@ -195,7 +197,7 @@ export default {
             return str;
         },
         // tìm kiếm các giá trị khớp với text trong combobox
-        search(){
+        search(){;
             // chuyển từ khóa tìm kiếm về chữ thường
             let value = this.selectValue.text.toLowerCase();
             this.dataShow = [];
@@ -233,7 +235,17 @@ export default {
             }
             this.valueInvalid();
         },
+
+        handleBlur(e){
+            if(this.selectValue.text == null){
+                this.valid = false;
+                this.$el.firstElementChild.setAttribute("title", 'Trường này không được để trống');
+            }else{
+                this.$el.firstElementChild.removeAttribute("title");
+            }
+        },
     },
+
     updated(){
         if(this.selectValue.text == ''){
             this.dataShow = this.cacheData;

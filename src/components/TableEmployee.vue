@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap-table">
+  <div class="wrap-table" id="wrap_table">
     <div class="ms-table">
       <table>
         <caption></caption>
@@ -32,7 +32,6 @@
               <div>CHỨC NĂNG</div>
             </th>
             <th style="right: 0px" id="" class="out-right bgc-white"></th>
-            <th style="right: -30px" id="" class="out-right bgc-gray"></th>
           </tr>
         </thead>
         <tbody>
@@ -58,8 +57,8 @@
             <td v-bind:class="{ selected: index == selectedRow }">
               {{ convertGender(employee.gender) }}
             </td>
-            <td v-bind:class="{ selected: index == selectedRow }">
-              {{ convertDate(employee.dateOfBirth) }}
+            <td v-bind:class="{ selected: index == selectedRow }" >
+              <div class="center">{{ convertDate(employee.dateOfBirth) }}</div>
             </td>
             <td v-bind:class="{ selected: index == selectedRow }">
               {{ employee.identityNumber }}
@@ -93,22 +92,22 @@
               </div>
             </td>
             <td style="right: 0px" class="out-right bgc-white"></td>
-            <td style="right: -30px" class="out-right bgc-gray"></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div style="bottom: 0px" class="wrap-footer">
+    <div class="wrap-footer">
       <div class="footer-content">
         <div class="count-record">
           Tổng số: {{ countEmployee.length }} bản ghi
         </div>
-        <div style="position: sticky; left: 60%; right: 40%">
-          <div
+        <div class="right-footer">
+          <div style="height:100%;">
+            <div style="position: sticky; left: 60%; right: 40%">
+          <div 
             style="
-              min-width: 215px;
+              max-width: 215px;
               max-height: 32px;
-              position: absolute;
               display: flex;
               top: -17px;
               border: 1px solid #babec5;
@@ -123,21 +122,8 @@
             ></v-select>
           </div>
         </div>
-        <div class="right-footer">
+          </div>
           <div>
-            <!-- <select
-            v-model="countEmployeePerPage"
-            @change="changeCountPerPage"
-            name=""
-            id=""
-            >
-            <option value="10" selected>10 bản ghi trên một trang</option>
-            <option value="20">20 bản ghi trên một trang</option>
-            <option value="30">30 bản ghi trên một trang</option>
-            <option value="50">50 bản ghi trên một trang</option>
-            <option value="100">100 bản ghi trên một trang</option>
-            </select> -->
-
             <div v-on:click="prevPage" class="front controlpage">Trước</div>
             <div
               v-for="page in countPage"
@@ -166,7 +152,7 @@ export default {
       employeeList: {}, // những nhân viên hiển thị lên màn hình
       countEmployee: {}, // tất cả nhân viên trong csdl
       selectedRow: 0, // hàng đang chọn
-      countEmployeePerPage: 30, // số lượng bản ghi / trang
+      countEmployeePerPage: 10, // số lượng bản ghi / trang
       countPage: 1, // số trang
       selectedPage: 1, // trang đang chọn
       employeeNameWarning: null, // tên khách hàng định xóa
@@ -203,7 +189,8 @@ export default {
     // sự kiện khi ấn sửa
     edit(index) {
       let employee = this.employeeList[index];
-      employee.dateOfBirth = this.convertDateToSendForm(employee.dateOfBirth);
+      employee.dateOfBirth = this.convertDate(employee.dateOfBirth);
+      employee.identityDate = this.convertDate(employee.identityDate);
       EventBus.$emit("editEmployee", employee);
     },
 
@@ -254,20 +241,12 @@ export default {
       return `${day}/${month}/${year}`;
     },
 
-    // chuyển đổi kiểu dữ liệu ngày tháng thành yyyy-mm-dd để gửi sang formdetail
-    convertDateToSendForm(dateSrc) {
-      let date = new Date(dateSrc),
-        year = date.getFullYear().toString(),
-        month = (date.getMonth() + 1).toString().padStart(2, "0"),
-        day = date.getDate().toString().padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    },
-
     // hàm lấy dữ liệu từ server
     async getDataServe() {
       EventBus.$emit("onLoading");
+      let url = "http://localhost:8080/api/v1/Employees";
       await axios
-        .get("http://localhost:8080/api/v1/Employees")
+        .get(url)
         .then((res) => {
           this.countEmployee = res.data;
           this.countPage =
@@ -278,14 +257,14 @@ export default {
             this.countEmployeePerPage
           );
           EventBus.$emit("stopLoading");
-          swal({
-            title: "Success",
-            icon: "success",
-            timer: 1500,
-          });
+          
         })
         .catch((err) => {
           console.log(err);
+          swal({
+            title: "Lấy dữ liệu thất bại, vui lòng liên hệ Misa để được trợ giúp",
+            icon: "error",
+          });
         });
     },
 
@@ -293,7 +272,6 @@ export default {
     showWarning(index) {
       let employee = this.employeeList[index];
       EventBus.$emit("showWarning", employee);
-      console.log(employee);
     },
 
     arrowUp() {
@@ -302,10 +280,11 @@ export default {
     },
   },
 
-  mounted() {
-    //lấy dữ liệu từ server sau khi khởi tạo xong component
+  created() {
     this.getDataServe();
+  },
 
+  mounted() {
     //hàm lắng nghe sự kiện khi các component khác gọi loadData
     EventBus.$on("loadDataServer", () => {
       this.getDataServe();
@@ -314,7 +293,7 @@ export default {
     //hàm lắng nghe sự kiện khi người dùng ấn enter ở ô tìm kiếm
     EventBus.$on("searchByNameId", async (s) => {
       EventBus.$emit("onLoading");
-      let url = "http://localhost:8080/api/v1/employees/search?s=" + s;
+      let url = "http://localhost:8080/api/v1/Employees/search?s=" + s;
       await axios.get(url).then((res) => {
         this.countEmployee = res.data;
         this.countPage =
@@ -328,12 +307,14 @@ export default {
 
       EventBus.$emit("stopLoading");
     }),
-      EventBus.$on("arrowUp", () => {
-        if (this.selectedRow > 0) this.selectedRow--;
-      }),
-      EventBus.$on("arrowDown", () => {
-        this.selectedRow++;
-      });
+
+    EventBus.$on("arrowUp", () => {
+      if (this.selectedRow > 0) this.selectedRow--;
+    }),
+
+    EventBus.$on("arrowDown", () => {
+      this.selectedRow++;
+    });
   },
 };
 </script>

@@ -169,7 +169,6 @@
   transform: scale(1.1);
 }
 
-
 /* css con */
 .check-all{
   z-index: 7!important;
@@ -210,18 +209,23 @@
 .right-footer{
   position: sticky;
   right: 60px;
+  min-width: max-content;
+  display: flex;
+  min-height: 100%;
+  align-items: center;
 }
 
 .right-footer *{
   display: inline;
 }
 
-.bgc-white{
-  background-color: #fff !important;
+.center{
+  justify-content: center;
+  display: flex;
 }
 
-.bgc-gray{
-  background-color: #f4f5f6 !important;
+.bgc-white{
+  background-color: #fff !important;
 }
 
 .sticky{
@@ -260,11 +264,15 @@
 }
 
 .v-input__icon {
-    height: 32px !important;
-    min-width: 20px !important;
-    width: 20px !important;
+  height: 32px !important;
+  min-width: 20px !important;
+  width: 20px !important;
 }
 
 #input-9{
   max-width: 10px !important; 
+}
+
+.v-select__selection {
+  max-width: 100% !important;
 }

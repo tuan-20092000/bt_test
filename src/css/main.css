@@ -8,6 +8,15 @@
 
   }
   
+  .main .div-left-30{
+    position: absolute;
+    right: 10px;
+    height: calc(100% - 10px);
+    width: 30px;
+    background-color: #f4f5f8;
+    z-index: 100;
+  }  
+
   .main-title {
     padding: 24px 50px 24px 0; 
     position: absolute;

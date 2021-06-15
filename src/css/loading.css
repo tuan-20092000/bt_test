@@ -1,4 +1,4 @@
-.wrap-loading {
+.wrap-message-form {
   position: absolute;
   top: 0;
   left: 0;
@@ -8,31 +8,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  }
-  
-.wrap-loading .loader {
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #2ca01c; 
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
 }
   
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.wrap-message-form .message-box {
+  background-color: #fff;
+  width: 444px;
+  height: 200px;
+  padding: 32px;
 }
 
-.wrap-loading .warning {
-  background-color: white;
-  width: 400px;
-  height: 280px;
-  display: flex;
-  flex-direction: column;
-}
-
-.warning .warning-icon{
+.message-box .warning-icon{
   height: 80px;
   display: flex;
   align-items: center;
@@ -40,7 +25,7 @@
   background-color: #88ec7a;
 }
 
-.warning .warning-content *{
+.message-box .warning-content *{
   height: 50px;
   display: flex;
   align-items: center;
@@ -48,105 +33,60 @@
   font-size: 16px;
 }
 
-.wrap-loading .warning .space{
-  height: 20px;
+.wrap-message-form .message-box .space{
   border-bottom: 1px solid #8d9096;
+  margin-bottom: 20px;
 }
 
-.warning .warning-control{
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  justify-content: space-between;
+.message-box .mess-footer{
+  position: relative;
+  height: 36px;
 }
 
-.warning .warning-control .btn-cancel{
+.message-box .mess-footer .btn-no{
   border: 1px solid #8d9096;
-  height: 35px;
-  width: 80px;
+  height: 36px;
+  padding: 8px 20px;
+  float: left;
+  border-radius: 3px;
 }
 
-.warning .warning-control .btn-cancel:hover{
-  background-color: #b8bcc3;
+.warning .mess-footer .btn-no:hover{
+  background-color: #d2d3d6;
 }
 
-.warning .warning-control .btn-ok{
-  border: 1px solid #8d9096;
+.wrap-message-form .mess-footer .btn-no:active{
+  background-color: #bbbcbc;
+}
+
+.message-box .mess-footer .btn-ok{
+  border: 1px solid transparent;
   height: 35px;
-  width: 80px;
+  padding: 8px 20px;
   background-color: #2ca01c;
+  color: #fff;
   float: right;
+  border-radius: 3px;
 }
 
-.warning .warning-control .btn-ok:hover{
+.message-box .mess-footer .btn-ok:hover{
   background-color: #35bf22;
 }
 
-
-.notify{
-  width: 400px;
-  height: 175px;
-  background-color: white;
-  position: relative;
-  padding-top: 24px;
+.message-box .div-content{
+  height: 80px;
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
 }
 
-.notify img{
-  position: absolute;
-  top: 0px;
-  right: 0px;
+.message-box .icon-message{
+  height: 100%;
+  width: 48px;
 }
 
-.notify .main-notify{
-  height: 91px;
-  padding: 0px 24px 0px 24px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column; 
-}
-
-
-.notify .title-notify{
-  font-size: 15px;
-  height: 39px;
-  padding-bottom: 24px;
-  color: #000;
-  font-weight: bold;
-  font-family: 'GoogleSans-Regular';
-}
-
-.notify .content-notify{
-  flex: 1;
-  font-size: 13px;
-  padding-bottom: 24px;
-  color: #000;
-  font-family: 'GoogleSans-Regular';
-}
-
-
-.notify .footer{
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 24px;
-  background-color: #E9EBEE;
-
-}
-
-.notify button{
-  height: 40px;
-  margin-left: 16px;
-  width: 100px;
-  border: 1px solid rgb(197, 197, 197);
-  border-radius: 4px;
-  font-family: 'GoogleSans-Regular';
-}
-
-.notify .btn-delete{
-  background-color: #FFCECE;
+.message-box .message-content{
+  padding: 12px 0px 0px 16px;
+  overflow: auto;
+  max-height: 400px;
+  margin-bottom: 32px;
 }

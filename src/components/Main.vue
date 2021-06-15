@@ -1,6 +1,6 @@
 <template>
   <div class="main" @keyup.up.exact="arrowUp()" @keyup.down.exact="arrowDown()">
-    <div class="main-title" style="top:0px">
+    <div class="main-title">
       <div class="main-title-content">
         <div class="title">Nhân viên</div>
         <div class="main-title-btn">
@@ -26,6 +26,7 @@
               id="search-name-id"
               type="text"
               placeholder="Tìm theo mã, tên nhân viên"
+              autocomplete="off"
             />
             <img src="../Resource/img/find.svg" alt="search" />
           </div>
@@ -40,6 +41,7 @@
           <TableEmployee />
       </div>
     </div>
+    <div class="div-left-30"></div>
   </div>
 </template>
 
