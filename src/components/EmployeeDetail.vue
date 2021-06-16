@@ -459,6 +459,7 @@ export default {
     // hàm lưu và tắt form
     save() {
       let me = this;
+      console.log(me.employee);
       if (me.checkInputRequired() && me.validateObject()) {
         me.handleRequest("save");
       } else {
@@ -487,16 +488,16 @@ export default {
       let me = this;
       let employee = { ...me.employee };
       // chuyển date hiển thị thành date server
-      if(employee.dateOfBirth.length>0){
-        employee.dateOfBirth = me.dateOfBirth_PK;
-      }else{
-        employee.dateOfBirth = null;
+      if(employee.dateOfBirth != undefined){
+        if(employee.dateOfBirth.length>0){
+          employee.dateOfBirth = me.dateOfBirth_PK;
+        }
       }
 
-      if(employee.identityDate>0){
-        employee.identityDate = me.identityDate_PK;
-      }else{
-        employee.identityDate = null;
+      if(employee.identityDate != undefined){
+        if(employee.identityDate.length>0){
+          employee.identityDate = me.identityDate_PK;
+        }
       }
       let employeeCode = employee.employeeCode.toUpperCase();
       // chèn thêm số 0 vào trước số mã nhân viên nếu mã chưa đủ 7 kí tự
@@ -657,7 +658,7 @@ export default {
         }
       }
       // validate ngày sinh
-      if (!me.validateDate(me.employee.dateOfBirth)) {
+      if (me.employee.dateOfBirth!=undefined && !me.validateDate(me.employee.dateOfBirth)) {
         console.log(me.employee.dateOfBirth);
         me.fieldMissingData = "dateOfBirth";
         console.log("");
@@ -666,7 +667,7 @@ export default {
       }
 
       // validate ngày cấp
-      if (!me.validateDate(me.employee.identityDate)) {
+      if (me.employee.identityDate!=undefined && !me.validateDate(me.employee.identityDate)) {
         me.fieldMissingData = "identityDate";
         me.messageContent = "Ngày cung cấp không hợp lệ, vui lòng nhập lại.";
         return false;
@@ -764,6 +765,24 @@ export default {
       )
         return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
+
+    async increaseCode(){
+      let url = "http://localhost:8080/api/v1/Employees/GetMaxCode";
+      let me = this;
+      let maxCode = "";
+      await axios
+        .get(url)
+        .then((res) => {
+          maxCode = res.data.substr(2);
+          maxCode = parseInt(maxCode) + 1;
+          maxCode = res.data.substr(0,2) + maxCode;
+          me.employee.employeeCode = maxCode;
+        })
+        .catch(error =>{
+          console.log(error);
+        })
+    },
+
   },
 
   mounted() {
@@ -778,9 +797,10 @@ export default {
     });
 
     // bắt sự kiên thêm mới nhân viên
-    EventBus.$on("addEmployee", () => {
+    EventBus.$on("addEmployee", async () => {
       let me = this;
       me.formMode = "add";
+      await me.increaseCode();
       me.showForm();
     });
 
@@ -801,9 +821,7 @@ export default {
       // return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
 
       if (!this.employee.identityDate) return null;
-      this.identityDate_PK = this.convertToDateServer(
-        this.employee.identityDate
-      );
+      this.identityDate_PK = this.convertToDateServer(this.employee.identityDate);
     });
   },
 };

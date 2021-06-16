@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="ms-wrap-message">
         <div v-if="loading" class="wrap-message-form">
             <img src="../Resource/loading.svg" alt="loading">
         </div>
@@ -17,7 +17,10 @@
                 </div>
                 <div class="space"></div>
                 <div class="mess-footer">
-                    <button v-on:click="cancelMessageBox()" class="btn-no">Hủy</button>
+                    <button v-on:click="cancelMessageBox()" 
+                        class="btn-no"
+                        ref="btnNo"
+                    >Hủy</button>
                     <button v-on:click="deleteEmployee()" class="btn-ok">Có</button>
                 </div>
             </div>
@@ -35,7 +38,10 @@
                 </div>
                 <div class="space"></div>
                 <div class="mess-footer">
-                    <button v-on:click="cancelErrorBox()" class="btn-ok">Đồng ý</button>
+                    <button v-on:click="cancelErrorBox()" 
+                        class="btn-ok"
+                        ref="btnOk" 
+                    >Đồng ý</button>
                 </div>
             </div>
         </div>
@@ -93,6 +99,10 @@ export default {
         showWarning(employee){
             this.employee = {...employee};
             this.warning = true;
+            this.$nextTick(function () {
+                if(this.$refs != undefined)
+                    this.$refs.btnNo.focus();
+            })
         },
 
         // hàm xóa nhân viên
@@ -106,6 +116,11 @@ export default {
             this.messageContent = message;
             this.error = true;
             this.field = field;
+            this.$nextTick(function () {
+                if(this.$refs.btnOk != undefined)
+                    this.$refs.btnOk.focus();
+            })
+            
         }
     },
 

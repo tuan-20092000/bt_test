@@ -43,6 +43,14 @@
   height: 36px;
 }
 
+.ms-wrap-message button{
+  outline: none;
+}
+
+.ms-wrap-message button:focus{
+  border: 1px solid black !important;
+}
+
 .message-box .mess-footer .btn-no{
   border: 1px solid #8d9096;
   height: 36px;

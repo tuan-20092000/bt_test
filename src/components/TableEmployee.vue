@@ -192,6 +192,7 @@ export default {
     // sự kiện khi ấn sửa
     edit(index) {
       let employee = this.employeeList[index];
+      console.log(employee);
       employee.dateOfBirth = this.convertDate(employee.dateOfBirth);
       employee.identityDate = this.convertDate(employee.identityDate);
       EventBus.$emit("editEmployee", employee);
@@ -272,7 +273,6 @@ export default {
         });
     },
     
-
     showMoreOption(e, index){
       let clientX = e.clientX,
           clientY = e.clientY,
