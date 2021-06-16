@@ -44,7 +44,7 @@ namespace MISA.AMIS.Controllers
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("[controller]Id")]
+        [HttpGet("{entityId}")]
         public IActionResult Get(Guid entityId)
         {
             var entity = _baseRepository.GetById(entityId);
@@ -60,7 +60,7 @@ namespace MISA.AMIS.Controllers
 
         // POST api/<CustomerController>
         [HttpPost]
-        public IActionResult Post(MISAEntity entity)
+        public IActionResult Post([FromBody] MISAEntity entity)
         {
             var result = _baseService.Insert(entity);
             if (result.isValid == true)
@@ -86,7 +86,7 @@ namespace MISA.AMIS.Controllers
         }
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("[controller]Id")]
+        [HttpDelete("{entityId}")]
         public IActionResult Delete(Guid entityId)
         {
             var rowAffect = _baseRepository.Delete(entityId);

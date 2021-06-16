@@ -31,7 +31,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// ngày sinh
         /// </summary>
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; } = null;
 
         /// <summary>
         /// đơn vị
@@ -46,7 +46,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// ngày cấp chứng minh nhân dân
         /// </summary>
-        public DateTime IdentityDate { get; set; }
+        public DateTime? IdentityDate { get; set; } = null;
 
         /// <summary>
         /// nơi cấp chứng minh nhân dân
