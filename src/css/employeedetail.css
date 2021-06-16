@@ -17,7 +17,7 @@
 .wrap-form .form-detail{
     width: 900px;
     height: 625px;
-    background-color: white;
+    background-color: #fff;
     display: flex;
     flex-flow: column;
     position: relative;
@@ -116,9 +116,18 @@
     height: 100%;
 }
 
+.wrap-form .uppercase{
+    text-transform: uppercase;
+}
+
 .wrap-form .employeeName{
     flex: 1;
 }
+
+.wrap-form .capitalize{
+    text-transform: capitalize;
+}
+
 
 .wrap-form input[type="text"], input[type="date"], input[type="email"]{
     width: 100%;

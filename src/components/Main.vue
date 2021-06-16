@@ -1,5 +1,5 @@
 <template>
-  <div class="main" @keyup.up.exact="arrowUp()" @keyup.down.exact="arrowDown()">
+  <div class="main" @keyup.up.exact="arrowUp()" @keyup.down.exact="arrowDown()" @click="clickMain($event)">
     <div class="main-title">
       <div class="main-title-content">
         <div class="title">Nhân viên</div>
@@ -37,11 +37,16 @@
           </div>
         </div>
       </div>
-      <div class="div-flex">
-          <TableEmployee />
+      <div class="div-flex" id="ms-component-table">
+        <TableEmployee 
+          v-on:showMoreOption="showMoreOption"/>
       </div>
     </div>
     <div class="div-left-30"></div>
+    <div v-if="showOption" :style="{left:xClick+'px',top:yClick+'px'}" class="tool-tip" id="popupOption">
+        <div class="option">Nhân bản</div>
+        <div class="option" @click="showWarning()">Xóa</div>
+    </div>
   </div>
 </template>
 
@@ -50,6 +55,17 @@ import TableEmployee from "./TableEmployee.vue";
 import EventBus from "./../main.js";
 import $ from "jquery";
 export default {
+
+  data(){
+    return{
+      showOption: false, // ẩn hiện option xóa, nhân bản
+      // indexE: null, // chỉ định taho tác với nhân viên nào
+      xClick: 0,
+      yClick: 0,
+      employee: null,
+    }
+  },
+
   components: {
     TableEmployee,
   },
@@ -73,6 +89,28 @@ export default {
     arrowDown() {
       EventBus.$emit("arrowDown");
     },
+
+    showMoreOption(xClick, yClick, employee){
+      this.xClick = xClick - 280;
+      this.yClick = yClick - 40;
+      this.employee = employee;
+      this.showOption = true;
+    },
+
+    // show form cảnh báo trước khi xóa
+    showWarning() {
+      EventBus.$emit("showWarning", this.employee);
+      this.showOption = false;
+    },
+
+    clickMain(e){
+      let component = document.getElementById("ms-component-table");
+      if (component != null && this.showOption) {
+        if (!component.contains(e.target)) {
+          this.showOption = false;
+        }
+      }
+    }
   },
 
   mounted() {

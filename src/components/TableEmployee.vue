@@ -88,7 +88,10 @@
             >
               <div class="col-edit">
                 <span v-on:click="edit(index)">Sửa</span>
-                <span v-on:click="showWarning(index)">Xóa</span>
+                <div class="div-more-icon">
+                  <img src="../Resource/img/more.svg" alt="" @click="showMoreOption($event,index)">
+                </div>
+                <!-- <span v-on:click="showWarning(index)">Xóa</span> -->
               </div>
             </td>
             <td style="right: 0px" class="out-right bgc-white"></td>
@@ -139,7 +142,8 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+
 </template>
 
 <script>
@@ -157,7 +161,6 @@ export default {
       selectedPage: 1, // trang đang chọn
       employeeNameWarning: null, // tên khách hàng định xóa
       employeeCodeWarning: null, // mã khách hàng định xóa
-
       optionCountPerPage: [
         { value: 10, text: "10 bản ghi trên 1 trang" },
         { value: 20, text: "20 bản ghi trên 1 trang" },
@@ -234,6 +237,7 @@ export default {
 
     // chuyển đổi ngày tháng năm từ server thành dd/mm/yyyy để hiển thị
     convertDate(dateSrc) {
+      if(dateSrc == null) return;
       let date = new Date(dateSrc),
         year = date.getFullYear().toString(),
         month = (date.getMonth() + 1).toString().padStart(2, "0"),
@@ -267,11 +271,14 @@ export default {
           });
         });
     },
+    
 
-    // show form cảnh báo trước khi xóa
-    showWarning(index) {
-      let employee = this.employeeList[index];
-      EventBus.$emit("showWarning", employee);
+    showMoreOption(e, index){
+      let clientX = e.clientX,
+          clientY = e.clientY,
+          employee = this.employeeList[index];
+      this.$emit("showMoreOption", clientX, clientY, employee);
+     
     },
 
     arrowUp() {

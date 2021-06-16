@@ -101,7 +101,7 @@
 
   .layout{
     padding: 100px 30px 0 0;
-    overflow: auto;
+    overflow: scroll;
     scroll-behavior: smooth;
     position: relative;
     flex: 1;
@@ -193,3 +193,24 @@
     display: flex!important;
   }
 
+  .tool-tip{
+    width: 120px;
+    height: 62px;
+    position: absolute;
+    top: 0px;
+    border: 1px solid #babec5;
+    z-index: 100;
+    right: 0px;
+  }
+  
+  .tool-tip .option{
+    height: 30px;
+    padding: 5px 10px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .tool-tip .option:hover{
+    background-color: #e8e9ec;
+    color: #08bf1e;
+  }

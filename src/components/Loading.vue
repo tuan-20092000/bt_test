@@ -11,7 +11,7 @@
                     </div>
                     <div class="message-content">
                         <div>Bạn có chắc muốn xóa nhân viên "{{employee.employeeName}}"
-                            mã nhân viên là "{{employee.employeeCode}}" không?</div>
+                            , mã nhân viên là "{{employee.employeeCode}}" không?</div>
                     </div>
                     
                 </div>

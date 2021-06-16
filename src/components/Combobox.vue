@@ -236,8 +236,12 @@ export default {
             this.valueInvalid();
         },
 
+        reset(){
+            this.selectValue = {};
+        },
+
         handleBlur(e){
-            if(this.selectValue.text == null){
+            if(this.selectValue.text == null || this.selectValue.text==""){
                 this.valid = false;
                 this.$el.firstElementChild.setAttribute("title", 'Trường này không được để trống');
             }else{
